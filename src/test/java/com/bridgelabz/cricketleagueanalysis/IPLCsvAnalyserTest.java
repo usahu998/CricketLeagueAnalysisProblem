@@ -10,9 +10,10 @@ public class IPLCsvAnalyserTest {
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
             IPLCsvAnalyser iplCsvAnalyser = new IPLCsvAnalyser();
-            iplCsvAnalyser.loadIPLRecords();
-        } catch (Exception e) {
-            e.printStackTrace();
+           int numberOfRecords = iplCsvAnalyser.loadIPLRecords(IPL_TEST_CSV_FILE_PATH);
+           Assert.assertEquals(10,numberOfRecords);
+        } catch (RuntimeException e) {
+        } catch (IPLRecordException e) {
         }
     }
 }

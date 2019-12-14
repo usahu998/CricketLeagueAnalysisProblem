@@ -4,7 +4,7 @@ import com.opencsv.bean.CsvBindByName;
 
 public class IPLRecordCSV {
 
-    @CsvBindByName(column = "POS", required = true)
+    @CsvBindByName(column = "POS")
     public int position;
     @CsvBindByName(column = "PLAYER", required = true)
     public String player;
@@ -34,22 +34,5 @@ public class IPLRecordCSV {
     public int sixes;
 
     public IPLRecordCSV() {
-    }
-
-    public IPLRecordCSV(int position, String player, int matches, int innings, int notOut, int runs, int highScore, String average, double ballFaced, int strikeRate, int century, int halfCentury, int fours, int sixes) {
-        this.position = position;
-        this.player = player;
-        this.matches = matches;
-        this.innings = innings;
-        this.notOut = notOut;
-        this.runs = runs;
-        this.highScore = highScore;
-        this.average = average;
-        this.ballFaced = ballFaced;
-        this.strikeRate = strikeRate;
-        this.century = century;
-        this.halfCentury = halfCentury;
-        this.fours = fours;
-        this.sixes = sixes;
     }
 }
