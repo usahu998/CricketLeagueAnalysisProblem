@@ -7,6 +7,7 @@ public class IPLCsvAnalyserTest {
 
     private static final String IPL_TEST_CSV_FILE_PATH ="./src/test/resources/TestIPL2019FactsheetMostRuns.csv";
     private static final String WRONG_CSV_FILE_PATH="./src/test/resources/TestIPL2019FactsheetMostRuns.csv";
+    private static final String WRONG_DELIMITER_CSV_FILE_PATH="./src/test/resources/IncorrectDelimiterIPL2019FactsheetMostRuns.csv";
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
@@ -23,6 +24,17 @@ public class IPLCsvAnalyserTest {
         try {
             IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
             iplAnalyser.loadIPLRecords(WRONG_CSV_FILE_PATH);
+        } catch (IPLRecordException e) {
+            Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
+        }
+
+    }
+
+    @Test
+    public void givenIPLRecordCSVFile_WithIncorrectDelimiter_ShouldReturnCustomExceptionType() {
+        try {
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            iplAnalyser.loadIPLRecords(WRONG_DELIMITER_CSV_FILE_PATH);
         } catch (IPLRecordException e) {
             Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
         }
