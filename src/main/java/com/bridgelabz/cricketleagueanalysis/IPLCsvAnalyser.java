@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import static java.util.stream.Collectors.toCollection;
@@ -55,6 +56,19 @@ public class IPLCsvAnalyser {
         String sortedStateCensusJson = new Gson().toJson(iplRecordCsvList);
         return  sortedStateCensusJson;
 
+    }
+
+    public String getAvgWiseSortedIPLRecords(SortByField.Parameter parameter) throws IPLRecordException {
+        Comparator<IPLRecordCsv> censusComparator = null;
+        if (iplRecordCsvList == null || iplRecordCsvList.size() == 0) {
+            throw new IPLRecordException("NO_CENSUS_DATA", IPLRecordException.ExceptionType.NO_CENSUS_DATA);
+        }
+        censusComparator = SortByField.getParameter(parameter);
+        ArrayList runCSVList = iplRecordCsvList.stream().
+                sorted(censusComparator).collect(Collectors.toCollection(ArrayList::new));
+
+        String sortedStateCensusJson = new Gson().toJson(runCSVList);
+        return  sortedStateCensusJson;
     }
 }
 

@@ -1,5 +1,6 @@
 package com.bridgelabz.cricketleagueanalysis;
 
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -57,7 +58,21 @@ public class IPLCsvAnalyserTest {
             IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
             iplAnalyser.loadIPLRecords(NON_EXISTING_IPL_CSV_FILE_PATH);
         } catch (IPLRecordException e) {
-            Assert.assertEquals(IPLRecordException.ExceptionType.NO_CENSUS_DATA, e.type);
+            Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
+        }
+    }
+
+    @Test
+    public void givenIPLRecordCSVFile_WhenSortedOnAvg_ShouldReturnCorrectDesiredSortedRecord() {
+        try {
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            iplAnalyser.loadIPLRecords(IPL_TEST_CSV_FILE_PATH);
+            String iplPlayersRecords = iplAnalyser.getAvgWiseSortedIPLRecords(SortByField.Parameter.AVG);
+            IPLRecordCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLRecordCsv[].class);
+            System.out.println(mostRunCSVS[mostRunCSVS.length - 1]);
+            Assert.assertEquals("MS Dhoni", mostRunCSVS[mostRunCSVS.length - 1].player);
+        } catch (IPLRecordException e) {
+            Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
         }
     }
 }
