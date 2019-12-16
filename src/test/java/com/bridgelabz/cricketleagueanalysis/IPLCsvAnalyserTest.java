@@ -11,6 +11,7 @@ public class IPLCsvAnalyserTest {
     private static final String WRONG_DELIMITER_CSV_FILE_PATH="./src/test/resources/IncorrectDelimiterIPL2019FactsheetMostRuns.csv";
     private static final String MISSING_HEADER_CSV_FILE_PATH="./src/test/resources/HeaderMissingIPL2019FactsheetMostRuns.csv";
     private static final String NON_EXISTING_IPL_CSV_FILE_PATH="";
+
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
@@ -67,10 +68,23 @@ public class IPLCsvAnalyserTest {
         try {
             IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
             iplAnalyser.loadIPLRecords(IPL_TEST_CSV_FILE_PATH);
-            String iplPlayersRecords = iplAnalyser.getAvgWiseSortedIPLRecords(SortByField.Parameter.AVG);
+            String iplPlayersRecords = iplAnalyser.getSortedIPLRecords(SortByField.Parameter.AVG);
             IPLRecordCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLRecordCsv[].class);
             System.out.println(mostRunCSVS[mostRunCSVS.length - 1]);
             Assert.assertEquals("MS Dhoni", mostRunCSVS[mostRunCSVS.length - 1].player);
+        } catch (IPLRecordException e) {
+            Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
+        }
+    }
+
+    @Test
+    public void givenIPLMOstRunsCSVFile_WhenSortedOnStrikeRate_ShouldReturnCorrectDesiredSortedData() {
+        try {
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            iplAnalyser.loadIPLRecords(IPL_TEST_CSV_FILE_PATH);
+            String iplpLayersRecords = iplAnalyser.getSortedIPLRecords(SortByField.Parameter.STRIKE_RATE);
+            IPLRecordCsv[] mostRunCSVS = new Gson().fromJson(iplpLayersRecords, IPLRecordCsv[].class);
+            Assert.assertEquals("Ishant Sharma", mostRunCSVS[mostRunCSVS.length - 1].player);
         } catch (IPLRecordException e) {
             Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
         }

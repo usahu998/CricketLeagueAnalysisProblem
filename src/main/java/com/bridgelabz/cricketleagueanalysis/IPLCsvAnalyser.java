@@ -16,8 +16,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import static java.util.stream.Collectors.toCollection;
-
 public class IPLCsvAnalyser {
 
     List<IPLRecordCsv> iplRecordCsvList = new ArrayList<>();
@@ -31,8 +29,7 @@ public class IPLCsvAnalyser {
             CsvToBean<IPLRecordCsv> csvToBean = csvToBeanBuilder.build();
             Iterator<IPLRecordCsv> censusCSVIterator = csvToBean.iterator();
             Iterable<IPLRecordCsv> csvIterable = () -> censusCSVIterator;
-            int numOfEateries = (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
-            return numOfEateries;
+            return (int) StreamSupport.stream(csvIterable.spliterator(), false).count();
         } catch (IOException e) {
             throw new IPLRecordException(e.getMessage(),
                     IPLRecordException.ExceptionType.CENSUS_FILE_PROBLEM);
@@ -42,33 +39,16 @@ public class IPLCsvAnalyser {
         }
     }
 
-    /*public String SortIPLRecords(FieldType fieldName) {
-        Comparator<CensusDAO> censusComparator = comparatorMap.get(fieldName);
-        ArrayList censusDTO = censusStateMap.values().stream()
-                .sorted(censusComparator)
-                .map(censusDto -> censusDto.getCensusDTO(country))
-                .collect(toCollection(ArrayList::new));
-        return new Gson().toJson(censusDTO);
-    }*/
-
-    public String getAvgWiseSortedIPLRecords() {
-        iplRecordCsvList.sort(Comparator.comparing(iplRecordCsv ->  iplRecordCsv.average));
-        String sortedStateCensusJson = new Gson().toJson(iplRecordCsvList);
-        return  sortedStateCensusJson;
-
-    }
-
-    public String getAvgWiseSortedIPLRecords(SortByField.Parameter parameter) throws IPLRecordException {
-        Comparator<IPLRecordCsv> censusComparator = null;
+    public String getSortedIPLRecords(SortByField.Parameter parameter) throws IPLRecordException {
+        Comparator<IPLRecordCsv> censusComparator;
         if (iplRecordCsvList == null || iplRecordCsvList.size() == 0) {
             throw new IPLRecordException("NO_CENSUS_DATA", IPLRecordException.ExceptionType.NO_CENSUS_DATA);
         }
         censusComparator = SortByField.getParameter(parameter);
         ArrayList runCSVList = iplRecordCsvList.stream().
                 sorted(censusComparator).collect(Collectors.toCollection(ArrayList::new));
-
         String sortedStateCensusJson = new Gson().toJson(runCSVList);
-        return  sortedStateCensusJson;
+        return sortedStateCensusJson;
     }
 }
 
