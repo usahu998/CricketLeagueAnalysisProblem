@@ -47,8 +47,7 @@ public class IPLCsvAnalyser {
         censusComparator = SortByField.getParameter(parameter);
         ArrayList runCSVList = iplRecordCsvList.stream().
                 sorted(censusComparator).collect(Collectors.toCollection(ArrayList::new));
-        String sortedStateCensusJson = new Gson().toJson(runCSVList);
-        return sortedStateCensusJson;
+        return new Gson().toJson(runCSVList);
     }
 }
 
