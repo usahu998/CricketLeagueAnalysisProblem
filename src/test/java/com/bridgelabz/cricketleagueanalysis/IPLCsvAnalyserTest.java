@@ -9,6 +9,7 @@ public class IPLCsvAnalyserTest {
     private static final String WRONG_CSV_FILE_PATH="./src/test/resources/TestIPL2019FactsheetMostRuns.csv";
     private static final String WRONG_DELIMITER_CSV_FILE_PATH="./src/test/resources/IncorrectDelimiterIPL2019FactsheetMostRuns.csv";
     private static final String MISSING_HEADER_CSV_FILE_PATH="./src/test/resources/HeaderMissingIPL2019FactsheetMostRuns.csv";
+    private static final String NON_EXISTING_IPL_CSV_FILE_PATH="";
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
@@ -47,6 +48,16 @@ public class IPLCsvAnalyserTest {
             iplAnalyser.loadIPLRecords(MISSING_HEADER_CSV_FILE_PATH);
         } catch (IPLRecordException e) {
             Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
+        }
+    }
+
+    @Test
+    public void givenIPLRecordCSVFile_withNonExisting_ShouldReturnCustomExceptionType() {
+        try {
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            iplAnalyser.loadIPLRecords(NON_EXISTING_IPL_CSV_FILE_PATH);
+        } catch (IPLRecordException e) {
+            Assert.assertEquals(IPLRecordException.ExceptionType.NO_CENSUS_DATA, e.type);
         }
     }
 }
