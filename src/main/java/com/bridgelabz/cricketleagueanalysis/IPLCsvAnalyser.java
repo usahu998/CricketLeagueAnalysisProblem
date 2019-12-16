@@ -1,6 +1,5 @@
 package com.bridgelabz.cricketleagueanalysis;
 
-import com.bridgelabz.csvbuilder.CSVBuilderException;
 import com.google.gson.Gson;
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
@@ -33,7 +32,7 @@ public class IPLCsvAnalyser {
         } catch (IOException e) {
             throw new IPLRecordException(e.getMessage(),
                     IPLRecordException.ExceptionType.CENSUS_FILE_PROBLEM);
-        }catch (RuntimeException e) {
+        } catch (RuntimeException e) {
             throw new IPLRecordException(e.getMessage(),
                     IPLRecordException.ExceptionType.NO_SUCH_FILE);
         }
@@ -45,8 +44,9 @@ public class IPLCsvAnalyser {
             throw new IPLRecordException("NO_CENSUS_DATA", IPLRecordException.ExceptionType.NO_CENSUS_DATA);
         }
         censusComparator = SortByField.getParameter(parameter);
-        ArrayList runCSVList = iplRecordCsvList.stream().
-                sorted(censusComparator).collect(Collectors.toCollection(ArrayList::new));
+        ArrayList runCSVList = iplRecordCsvList.stream()
+                .sorted(censusComparator)
+                .collect(Collectors.toCollection(ArrayList::new));
         return new Gson().toJson(runCSVList);
     }
 }

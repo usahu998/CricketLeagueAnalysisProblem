@@ -33,7 +33,7 @@ static Map<Parameter, Comparator> sortParameterComparator = new HashMap<>();
         sortParameterComparator.put(Parameter.HIGH_SCORE, highScoreComparator);
         sortParameterComparator.put(Parameter.SIX, sixComparator);
         sortParameterComparator.put(Parameter.RUN, runComparator);
-        //sortParameterComparator.put(Parameter.SIX_AND_FOURS,);
+        sortParameterComparator.put(Parameter.SIX_AND_FOURS, new SortFieldComparator());
 
         Comparator<IPLRecordCsv> comparator = sortParameterComparator.get(field);
         return comparator;
