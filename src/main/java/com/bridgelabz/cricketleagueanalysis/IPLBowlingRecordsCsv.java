@@ -2,7 +2,7 @@ package com.bridgelabz.cricketleagueanalysis;
 
 import com.opencsv.bean.CsvBindByName;
 
-public class IPLRecordCsv {
+public class IPLBowlingRecordsCsv {
 
     @CsvBindByName(column = " PLAYER ")
     public String player;
@@ -10,27 +10,25 @@ public class IPLRecordCsv {
     public int matches;
     @CsvBindByName(column = " Inns ")
     public  int innings;
-    @CsvBindByName(column = " NO ")
-    public int notOut;
+    @CsvBindByName(column = " Ov ")
+    public int Over;
     @CsvBindByName(column = " Runs ")
     public int runs;
-    @CsvBindByName(column = " HS ")
-    public String  highScore;
+    @CsvBindByName(column = " Wkts ")
+    public String  wickets;
+    @CsvBindByName(column = " BBI ")
+    public double bestBowlingInning;
     @CsvBindByName(column = " Avg ",required = true)
     public double average;
-    @CsvBindByName(column = " BF ")
-    public double ballFaced;
+    @CsvBindByName(column = " Econ ")
+    public int economy;
     @CsvBindByName(column = " SR ")
     public String strikeRate;
-    @CsvBindByName(column = " 100 ")
-    public int century;
-    @CsvBindByName(column = " 50 ")
-    public int halfCentury;
-    @CsvBindByName(column = " 4s ")
-    public int fours;
-    @CsvBindByName(column = " 6s ")
-    public int sixes;
+    @CsvBindByName(column = " 4w ")
+    public int foursWickets;
+    @CsvBindByName(column = " 5w ")
+    public int fivesWickets;
 
-    public IPLRecordCsv() {
+    public IPLBowlingRecordsCsv() {
     }
 }

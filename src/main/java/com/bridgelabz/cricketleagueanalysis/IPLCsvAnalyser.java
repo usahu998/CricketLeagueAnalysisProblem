@@ -15,20 +15,20 @@ import java.util.stream.StreamSupport;
 
 public class IPLCsvAnalyser {
 
-    List<IPLRecordCsv> iplRecordCsvList = new ArrayList<>();
-    Map< String, IPLRecordCsv> iplRecordCsvMap = new HashMap<>();
-
+    List<IPLBatsmanRecordCsv> iplBatsmanRecordCsvList = new ArrayList<>();
+   // Map< String, IPLBatsmanRecordCsv> iplRecordCsvMap = new HashMap<>();
+   Map< String, IPLBatsmanRecordCsv> iplRecordCsvMap = new HashMap<>();
     public int loadIPLRecords(String csvFilePath) throws IPLRecordException {
         try {
             Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
-            CsvToBeanBuilder<IPLRecordCsv> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
-            csvToBeanBuilder.withType(IPLRecordCsv.class);
+            CsvToBeanBuilder<IPLBatsmanRecordCsv> csvToBeanBuilder = new CsvToBeanBuilder<>(reader);
+            csvToBeanBuilder.withType(IPLBatsmanRecordCsv.class);
             csvToBeanBuilder.withIgnoreLeadingWhiteSpace(true);
-            CsvToBean<IPLRecordCsv> csvToBean = csvToBeanBuilder.build();
-            Iterator<IPLRecordCsv> iplRecordCsvIterator = csvToBean.iterator();
-            Iterable<IPLRecordCsv> csvIterable = () -> iplRecordCsvIterator;
+            CsvToBean<IPLBatsmanRecordCsv> csvToBean = csvToBeanBuilder.build();
+            Iterator<IPLBatsmanRecordCsv> iplRecordCsvIterator = csvToBean.iterator();
+            Iterable<IPLBatsmanRecordCsv> csvIterable = () -> iplRecordCsvIterator;
             StreamSupport.stream(csvIterable.spliterator(),false)
-                    .map(IPLRecordCsv.class::cast)
+                    .map(IPLBatsmanRecordCsv.class::cast)
                     .forEach(iplRuns -> this.iplRecordCsvMap.put(iplRuns.player,iplRuns));
             return iplRecordCsvMap.size();
         } catch (IOException e) {
@@ -41,7 +41,7 @@ public class IPLCsvAnalyser {
     }
 
     public String getSortedIPLRecordsFieldWise(SortByField.Parameter parameter) throws IPLRecordException {
-        Comparator<IPLRecordCsv> iplRecordCsvComparator;
+        Comparator<IPLBatsmanRecordCsv> iplRecordCsvComparator;
         if (iplRecordCsvMap == null || iplRecordCsvMap.size() == 0) {
             throw new IPLRecordException("NO_CENSUS_DATA", IPLRecordException.ExceptionType.NO_CENSUS_DATA);
         }

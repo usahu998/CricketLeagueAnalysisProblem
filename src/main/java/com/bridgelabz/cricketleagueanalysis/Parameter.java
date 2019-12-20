@@ -16,14 +16,14 @@ static Map<Parameter, Comparator> sortParameterComparator = new HashMap<>();
     }
     public static Comparator getComparatorForIPL(Parameter field) {
 
-        Comparator<IPLRecordCsv> avgComparator = Comparator.comparing(iplRecordCsv -> iplRecordCsv.average);
-        Comparator<IPLRecordCsv> strikeRateComparator = Comparator.comparing(iplRecordCsv -> iplRecordCsv.strikeRate);
-        Comparator<IPLRecordCsv> centuryComparator = Comparator.comparing(iplRecordCsv -> iplRecordCsv.century);
-        Comparator<IPLRecordCsv> foursComparator = Comparator.comparing(iplRecordCsv -> iplRecordCsv.fours);
-        Comparator<IPLRecordCsv> HalfCenturyComparator = Comparator.comparing(iplRecordCsv -> iplRecordCsv.halfCentury);
-        Comparator<IPLRecordCsv> highScoreComparator = Comparator.comparing(iplRecordCsv -> iplRecordCsv.highScore);
-        Comparator<IPLRecordCsv> sixComparator = Comparator.comparing(iplRecordCsv -> iplRecordCsv.sixes);
-        Comparator<IPLRecordCsv> runComparator = Comparator.comparing(iplRecordCsv -> iplRecordCsv.runs);
+        Comparator<IPLBatsmanRecordCsv> avgComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.average);
+        Comparator<IPLBatsmanRecordCsv> strikeRateComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.strikeRate);
+        Comparator<IPLBatsmanRecordCsv> centuryComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.century);
+        Comparator<IPLBatsmanRecordCsv> foursComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.fours);
+        Comparator<IPLBatsmanRecordCsv> HalfCenturyComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.halfCentury);
+        Comparator<IPLBatsmanRecordCsv> highScoreComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.highScore);
+        Comparator<IPLBatsmanRecordCsv> sixComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.sixes);
+        Comparator<IPLBatsmanRecordCsv> runComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.runs);
 
         sortParameterComparator.put(Parameter.AVG, avgComparator);
         sortParameterComparator.put(Parameter.STRIKE_RATE, strikeRateComparator);
@@ -38,7 +38,7 @@ static Map<Parameter, Comparator> sortParameterComparator = new HashMap<>();
         sortParameterComparator.put(Parameter.AVERAGE_AND_STRIKERATE,avgComparator.thenComparing(strikeRateComparator));
         sortParameterComparator.put(Parameter.RUNS_AND_AVERAGE,runComparator.thenComparing(avgComparator));
 
-        Comparator<IPLRecordCsv> comparator = sortParameterComparator.get(field);
+        Comparator<IPLBatsmanRecordCsv> comparator = sortParameterComparator.get(field);
         return comparator;
 
     }
