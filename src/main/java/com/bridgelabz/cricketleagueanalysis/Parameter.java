@@ -8,13 +8,13 @@ class SortByField {
 static Map<Parameter, Comparator> sortParameterComparator = new HashMap<>();
 
     public enum Parameter {
-        AVG, STRIKE_RATE, CENTURY, FOURS, HALF_CENTURY, HIGH_SCORE, SIX, RUN , SIX_AND_FOURS;
+        AVG, STRIKE_RATE, CENTURY, FOURS, HALF_CENTURY, HIGH_SCORE, SIX, RUN , SIX_AND_FOURS, SIX_AND_FOURS_WITH_STRIKERATE;
     }
 
     SortByField() {
 
     }
-    public static Comparator getParameter(Parameter field) {
+    public static Comparator getComparatorForIPL(Parameter field) {
 
         Comparator<IPLRecordCsv> avgComparator = Comparator.comparing(iplRecordCsv -> iplRecordCsv.average);
         Comparator<IPLRecordCsv> strikeRateComparator = Comparator.comparing(iplRecordCsv -> iplRecordCsv.strikeRate);
@@ -33,7 +33,8 @@ static Map<Parameter, Comparator> sortParameterComparator = new HashMap<>();
         sortParameterComparator.put(Parameter.HIGH_SCORE, highScoreComparator);
         sortParameterComparator.put(Parameter.SIX, sixComparator);
         sortParameterComparator.put(Parameter.RUN, runComparator);
-        sortParameterComparator.put(Parameter.SIX_AND_FOURS, new SortFieldComparator());
+        sortParameterComparator.put(Parameter.SIX_AND_FOURS, new Maximum4sAnd6sComparator());
+        sortParameterComparator.put(Parameter.SIX_AND_FOURS_WITH_STRIKERATE,strikeRateComparator.thenComparing(new Maximum4sAnd6sComparator()));
 
         Comparator<IPLRecordCsv> comparator = sortParameterComparator.get(field);
         return comparator;

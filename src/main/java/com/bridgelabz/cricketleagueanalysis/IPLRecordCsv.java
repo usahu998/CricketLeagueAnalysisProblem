@@ -4,33 +4,31 @@ import com.opencsv.bean.CsvBindByName;
 
 public class IPLRecordCsv {
 
-    @CsvBindByName(column = "POS")
-    public int position;
-    @CsvBindByName(column = "PLAYER", required = true)
+    @CsvBindByName(column = " PLAYER ")
     public String player;
-    @CsvBindByName(column = "Mat", required = true)
+    @CsvBindByName(column = " Mat ")
     public int matches;
-    @CsvBindByName(column = "Inns", required = true)
+    @CsvBindByName(column = " Inns ")
     public  int innings;
-    @CsvBindByName(column = "NO", required = true)
+    @CsvBindByName(column = " NO ")
     public int notOut;
-    @CsvBindByName(column = "Runs", required = true)
+    @CsvBindByName(column = " Runs ")
     public int runs;
-    @CsvBindByName(column = "HS", required = true)
-    public int highScore;
-    @CsvBindByName(column = "Avg", required = true)
-    public String average;
-    @CsvBindByName(column = "BF", required = true)
+    @CsvBindByName(column = " HS ")
+    public String  highScore;
+    @CsvBindByName(column = " Avg ",required = true)
+    public double average;
+    @CsvBindByName(column = " BF ")
     public double ballFaced;
-    @CsvBindByName(column = "SR", required = true)
-    public int strikeRate;
-    @CsvBindByName(column = "100", required = true)
+    @CsvBindByName(column = " SR ")
+    public String strikeRate;
+    @CsvBindByName(column = " 100 ")
     public int century;
-    @CsvBindByName(column = "50", required = true)
+    @CsvBindByName(column = " 50 ")
     public int halfCentury;
-    @CsvBindByName(column = "4s", required = true)
+    @CsvBindByName(column = " 4s ")
     public int fours;
-    @CsvBindByName(column = "6s", required = true)
+    @CsvBindByName(column = " 6s ")
     public int sixes;
 
     public IPLRecordCsv() {
