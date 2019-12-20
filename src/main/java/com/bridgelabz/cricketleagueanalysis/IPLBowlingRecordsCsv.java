@@ -9,16 +9,16 @@ public class IPLBowlingRecordsCsv {
     @CsvBindByName(column = " Mat ")
     public int matches;
     @CsvBindByName(column = " Inns ")
-    public  int innings;
+    public int innings;
     @CsvBindByName(column = " Ov ")
     public int Over;
     @CsvBindByName(column = " Runs ")
     public int runs;
     @CsvBindByName(column = " Wkts ")
-    public String  wickets;
+    public String wickets;
     @CsvBindByName(column = " BBI ")
     public double bestBowlingInning;
-    @CsvBindByName(column = " Avg ",required = true)
+    @CsvBindByName(column = " Avg ", required = true)
     public double average;
     @CsvBindByName(column = " Econ ")
     public int economy;

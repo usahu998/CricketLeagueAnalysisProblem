@@ -9,14 +9,14 @@ public class IPLBatsmanRecordCsv {
     @CsvBindByName(column = " Mat ")
     public int matches;
     @CsvBindByName(column = " Inns ")
-    public  int innings;
+    public int innings;
     @CsvBindByName(column = " NO ")
     public int notOut;
     @CsvBindByName(column = " Runs ")
     public int runs;
     @CsvBindByName(column = " HS ")
-    public String  highScore;
-    @CsvBindByName(column = " Avg ",required = true)
+    public String highScore;
+    @CsvBindByName(column = " Avg ", required = true)
     public double average;
     @CsvBindByName(column = " BF ")
     public double ballFaced;

@@ -5,15 +5,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 class SortByField {
-static Map<Parameter, Comparator> sortParameterComparator = new HashMap<>();
+    static Map<Parameter, Comparator> sortParameterComparator = new HashMap<>();
 
     public enum Parameter {
-        AVG, STRIKE_RATE, CENTURY, FOURS, HALF_CENTURY, HIGH_SCORE, SIX, RUN , SIX_AND_FOURS, SIX_AND_FOURS_WITH_STRIKERATE, AVERAGE_AND_STRIKERATE, RUNS_AND_AVERAGE;
+        AVG, STRIKE_RATE, CENTURY, FOURS, HALF_CENTURY, HIGH_SCORE, SIX, RUN, SIX_AND_FOURS, SIX_AND_FOURS_WITH_STRIKERATE, AVERAGE_AND_STRIKERATE, RUNS_AND_AVERAGE;
     }
 
     SortByField() {
 
     }
+
     public static Comparator getComparatorForIPL(Parameter field) {
 
         Comparator<IPLBatsmanRecordCsv> avgComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.average);
@@ -34,12 +35,11 @@ static Map<Parameter, Comparator> sortParameterComparator = new HashMap<>();
         sortParameterComparator.put(Parameter.SIX, sixComparator);
         sortParameterComparator.put(Parameter.RUN, runComparator);
         sortParameterComparator.put(Parameter.SIX_AND_FOURS, new Maximum4sAnd6sComparator());
-        sortParameterComparator.put(Parameter.SIX_AND_FOURS_WITH_STRIKERATE,strikeRateComparator.thenComparing(new Maximum4sAnd6sComparator()));
-        sortParameterComparator.put(Parameter.AVERAGE_AND_STRIKERATE,avgComparator.thenComparing(strikeRateComparator));
-        sortParameterComparator.put(Parameter.RUNS_AND_AVERAGE,runComparator.thenComparing(avgComparator));
+        sortParameterComparator.put(Parameter.SIX_AND_FOURS_WITH_STRIKERATE, strikeRateComparator.thenComparing(new Maximum4sAnd6sComparator()));
+        sortParameterComparator.put(Parameter.AVERAGE_AND_STRIKERATE, avgComparator.thenComparing(strikeRateComparator));
+        sortParameterComparator.put(Parameter.RUNS_AND_AVERAGE, runComparator.thenComparing(avgComparator));
 
         Comparator<IPLBatsmanRecordCsv> comparator = sortParameterComparator.get(field);
         return comparator;
-
     }
 }
