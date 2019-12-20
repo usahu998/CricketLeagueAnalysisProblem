@@ -64,19 +64,6 @@ public class IPLCsvAnalyserTest {
     }
 
     @Test
-    public void givenIPLRecordCSVFile_WhenSortedOnAvg_ShouldReturnCorrectDesiredSortedLowestRecord() {
-        try {
-            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
-            iplAnalyser.loadIPLRecords(IPL_CSV_FILE_PATH);
-            String iplPlayersRecords = iplAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.AVG);
-            IPLRecordCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLRecordCsv[].class);
-            Assert.assertEquals("Ishant Sharma", mostRunCSVS[0].player);
-        } catch (IPLRecordException e) {
-            Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
-        }
-    }
-
-    @Test
     public void givenIPLRecordCSVFile_WhenSortedOnAvg_ShouldReturnCorrectDesiredSortedHigestRecord() {
         try {
             IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
@@ -121,6 +108,18 @@ public class IPLCsvAnalyserTest {
             String iplPlayersRecords = iplAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.SIX_AND_FOURS_WITH_STRIKERATE);
             IPLRecordCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLRecordCsv[].class);
             Assert.assertEquals("Kedar Jadhav", mostRunCSVS[mostRunCSVS.length - 1].player);
+        } catch (IPLRecordException ignored) {
+        }
+    }
+
+    @Test
+    public void givenIPLRecordCSVFile_WhenSortedGreatAverageWithGreateStrikeRate_ShouldReturnCorrectDesiredSortedHigestData() {
+        try {
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            iplAnalyser.loadIPLRecords(IPL_CSV_FILE_PATH);
+            String iplPlayersRecords = iplAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.AVERAGE_AND_STRIKERATE);
+            IPLRecordCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLRecordCsv[].class);
+            Assert.assertEquals("MS Dhoni", mostRunCSVS[mostRunCSVS.length - 1].player);
         } catch (IPLRecordException ignored) {
         }
     }
