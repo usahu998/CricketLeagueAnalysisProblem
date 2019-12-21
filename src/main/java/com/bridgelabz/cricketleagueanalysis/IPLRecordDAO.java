@@ -6,7 +6,7 @@ public class IPLRecordDAO {
 
     public String player;
     public int runs;
-    public String strikeRate;
+    public double strikeRate;
     public double average;
     public int fours;
     public int six;
@@ -37,7 +37,7 @@ public class IPLRecordDAO {
 
     }
 
-    public IPLRecordDAO(String player, int runs, String strikeRate, double average, int fours, int six, String wickets, int foursWickets, int fivesWickets, double economy) {
+    public IPLRecordDAO(String player, int runs, double strikeRate, double average, int fours, int six, String wickets, int foursWickets, int fivesWickets, double economy) {
         this.player = player;
         this.runs = runs;
         this.strikeRate = strikeRate;

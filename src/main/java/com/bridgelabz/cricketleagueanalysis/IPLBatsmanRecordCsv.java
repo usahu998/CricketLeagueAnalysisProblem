@@ -21,7 +21,7 @@ public class IPLBatsmanRecordCsv {
     @CsvBindByName(column = " BF ")
     public double ballFaced;
     @CsvBindByName(column = " SR ")
-    public String strikeRate;
+    public double strikeRate;
     @CsvBindByName(column = " 100 ")
     public int century;
     @CsvBindByName(column = " 50 ")

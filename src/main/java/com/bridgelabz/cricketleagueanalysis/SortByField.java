@@ -25,10 +25,7 @@ class SortByField {
 
         sortParameterComparator.put(Parameter.AVG, avgComparator);
         sortParameterComparator.put(Parameter.STRIKE_RATE, strikeRateComparator);
-
         sortParameterComparator.put(Parameter.FOURS, foursComparator);
-
-
         sortParameterComparator.put(Parameter.SIX, sixComparator);
         sortParameterComparator.put(Parameter.RUN, runComparator);
         sortParameterComparator.put(Parameter.SIX_AND_FOURS, new Maximum4sAnd6sComparator());
@@ -36,7 +33,7 @@ class SortByField {
         sortParameterComparator.put(Parameter.AVERAGE_AND_STRIKERATE, avgComparator.thenComparing(strikeRateComparator));
         sortParameterComparator.put(Parameter.RUNS_AND_AVERAGE, runComparator.thenComparing(avgComparator));
 
-        Comparator<IPLBatsmanRecordCsv> comparator = sortParameterComparator.get(field);
+        Comparator<IPLRecordDAO> comparator = sortParameterComparator.get(field);
         return comparator;
     }
 }

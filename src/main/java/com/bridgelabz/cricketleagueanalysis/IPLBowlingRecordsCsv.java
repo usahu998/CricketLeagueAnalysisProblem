@@ -11,7 +11,7 @@ public class IPLBowlingRecordsCsv {
     @CsvBindByName(column = " Inns ")
     public int innings;
     @CsvBindByName(column = " Ov ")
-    public int Over;
+    public double Over;
     @CsvBindByName(column = " Runs ")
     public int runs;
     @CsvBindByName(column = " Wkts ")
@@ -21,9 +21,9 @@ public class IPLBowlingRecordsCsv {
     @CsvBindByName(column = " Avg ", required = true)
     public double average;
     @CsvBindByName(column = " Econ ")
-    public int economy;
+    public double economy;
     @CsvBindByName(column = " SR ")
-    public String strikeRate;
+    public double strikeRate;
     @CsvBindByName(column = " 4w ")
     public int foursWickets;
     @CsvBindByName(column = " 5w ")
