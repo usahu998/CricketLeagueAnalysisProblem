@@ -17,21 +17,18 @@ class SortByField {
 
     public static Comparator getComparatorForIPL(Parameter field) {
 
-        Comparator<IPLBatsmanRecordCsv> avgComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.average);
-        Comparator<IPLBatsmanRecordCsv> strikeRateComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.strikeRate);
-        Comparator<IPLBatsmanRecordCsv> centuryComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.century);
-        Comparator<IPLBatsmanRecordCsv> foursComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.fours);
-        Comparator<IPLBatsmanRecordCsv> HalfCenturyComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.halfCentury);
-        Comparator<IPLBatsmanRecordCsv> highScoreComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.highScore);
-        Comparator<IPLBatsmanRecordCsv> sixComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.sixes);
-        Comparator<IPLBatsmanRecordCsv> runComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.runs);
+        Comparator<IPLRecordDAO> avgComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.average);
+        Comparator<IPLRecordDAO> strikeRateComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.strikeRate);
+        Comparator<IPLRecordDAO> foursComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.fours);
+        Comparator<IPLRecordDAO> sixComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.six);
+        Comparator<IPLRecordDAO> runComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.runs);
 
         sortParameterComparator.put(Parameter.AVG, avgComparator);
         sortParameterComparator.put(Parameter.STRIKE_RATE, strikeRateComparator);
-        sortParameterComparator.put(Parameter.CENTURY, centuryComparator);
+
         sortParameterComparator.put(Parameter.FOURS, foursComparator);
-        sortParameterComparator.put(Parameter.HALF_CENTURY, HalfCenturyComparator);
-        sortParameterComparator.put(Parameter.HIGH_SCORE, highScoreComparator);
+
+
         sortParameterComparator.put(Parameter.SIX, sixComparator);
         sortParameterComparator.put(Parameter.RUN, runComparator);
         sortParameterComparator.put(Parameter.SIX_AND_FOURS, new Maximum4sAnd6sComparator());

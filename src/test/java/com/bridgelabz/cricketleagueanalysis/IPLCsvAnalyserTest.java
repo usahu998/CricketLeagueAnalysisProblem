@@ -15,7 +15,7 @@ public class IPLCsvAnalyserTest {
     @Test
     public void givenIndianCensusCSVFileReturnsCorrectRecords() {
         try {
-            IPLCsvAnalyser iplCsvAnalyser = new IPLCsvAnalyser();
+            IPLCsvAnalyser iplCsvAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
             int numberOfRecords = iplCsvAnalyser.loadIPLRecords(IPL_CSV_FILE_PATH);
             System.out.println(numberOfRecords);
             Assert.assertEquals(100, numberOfRecords);
@@ -26,7 +26,7 @@ public class IPLCsvAnalyserTest {
     @Test
     public void givenIPLRecordCSVFile_WithIncorrectFilePath_ShouldReturnCustomExceptionType() {
         try {
-            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
             iplAnalyser.loadIPLRecords(WRONG_CSV_FILE_PATH);
         } catch (IPLRecordException e) {
             Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
@@ -36,7 +36,7 @@ public class IPLCsvAnalyserTest {
     @Test
     public void givenIPLRecordCSVFile_WithIncorrectDelimiter_ShouldReturnCustomExceptionType() {
         try {
-            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
             iplAnalyser.loadIPLRecords(WRONG_DELIMITER_CSV_FILE_PATH);
         } catch (IPLRecordException e) {
             Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
@@ -46,18 +46,8 @@ public class IPLCsvAnalyserTest {
     @Test
     public void givenIPLRecordCSVFile_WithMissingHeaderFile_ShouldReturnCustomExceptionType() {
         try {
-            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
             iplAnalyser.loadIPLRecords(MISSING_HEADER_CSV_FILE_PATH);
-        } catch (IPLRecordException e) {
-            Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
-        }
-    }
-
-    @Test
-    public void givenIPLRecordCSVFile_withNonExisting_ShouldReturnCustomExceptionType() {
-        try {
-            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
-            iplAnalyser.loadIPLRecords(NON_EXISTING_IPL_CSV_FILE_PATH);
         } catch (IPLRecordException e) {
             Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
         }
@@ -66,7 +56,7 @@ public class IPLCsvAnalyserTest {
     @Test
     public void givenIPLRecordCSVFile_WhenSortedOnAvg_ShouldReturnCorrectDesiredSortedHigestRecord() {
         try {
-            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
             iplAnalyser.loadIPLRecords(IPL_CSV_FILE_PATH);
             String iplPlayersRecords = iplAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.AVG);
             IPLBatsmanRecordCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLBatsmanRecordCsv[].class);
@@ -79,7 +69,7 @@ public class IPLCsvAnalyserTest {
     @Test
     public void givenIPLRecordCSVFile_WhenSortedOnStrikeRate_ShouldReturnCorrectDesiredSortedHigestRecord() {
         try {
-            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
             iplAnalyser.loadIPLRecords(IPL_CSV_FILE_PATH);
             String iplPlayersRecords = iplAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.STRIKE_RATE);
             IPLBatsmanRecordCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLBatsmanRecordCsv[].class);
@@ -91,8 +81,8 @@ public class IPLCsvAnalyserTest {
     @Test
     public void givenIPLRecordCSVFile_WhenSortedOn4SAnd6s_ShouldReturnCorrectDesiredSortedRecord() {
         try {
-            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
-            iplAnalyser.loadIPLRecords(IPL_TEST_CSV_FILE_PATH);
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
+            iplAnalyser.loadIPLRecords(IPL_CSV_FILE_PATH);
             String iplPlayersRecords = iplAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.SIX_AND_FOURS);
             IPLBatsmanRecordCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLBatsmanRecordCsv[].class);
             Assert.assertEquals("Andre Russell", mostRunCSVS[mostRunCSVS.length - 1].player);
@@ -103,7 +93,7 @@ public class IPLCsvAnalyserTest {
     @Test
     public void givenIPLRecordCSVFile_WhenSortedOn4sAnd6sWithStrikeRate_ShouldReturnCorrectDesiredSortedHigestData() {
         try {
-            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
             iplAnalyser.loadIPLRecords(IPL_CSV_FILE_PATH);
             String iplPlayersRecords = iplAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.SIX_AND_FOURS_WITH_STRIKERATE);
             IPLBatsmanRecordCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLBatsmanRecordCsv[].class);
@@ -115,7 +105,7 @@ public class IPLCsvAnalyserTest {
     @Test
     public void givenIPLRecordCSVFile_WhenSortedGreatAverageWithGreateStrikeRate_ShouldReturnCorrectDesiredSortedHigestData() {
         try {
-            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
             iplAnalyser.loadIPLRecords(IPL_CSV_FILE_PATH);
             String iplPlayersRecords = iplAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.AVERAGE_AND_STRIKERATE);
             IPLBatsmanRecordCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLBatsmanRecordCsv[].class);
@@ -127,7 +117,7 @@ public class IPLCsvAnalyserTest {
     @Test
     public void givenIPLRecordCSVFile_WhenSortedMaxRunAndAverage_ShouldReturnCorrectDesiredSortedHigestData() {
         try {
-            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser();
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
             iplAnalyser.loadIPLRecords(IPL_CSV_FILE_PATH);
             String iplPlayersRecords = iplAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.RUNS_AND_AVERAGE);
             IPLBatsmanRecordCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLBatsmanRecordCsv[].class);

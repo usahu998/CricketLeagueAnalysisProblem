@@ -23,13 +23,13 @@ public abstract class IPLAdapter {
             ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
             Iterator mostRunCSVIterator = csvBuilder.getCSVFileIterator(reader, iplCSVClass);
             Iterable<T> mostRunCSVIterable = () -> mostRunCSVIterator;
-            if (iplCSVClass.getName().equals("iplanalysis.MostRunCSV")) {
+            if (iplCSVClass.getName().equals("com.bridgelabz.cricketleagueanalysis.IPLBatsmanRecordCsv")) {
                 StreamSupport.stream(mostRunCSVIterable.spliterator(), false)
                         .map(IPLBatsmanRecordCsv.class::cast)
                         .forEach(mostRunCSV -> iplRecordDAOMap.put(mostRunCSV.player, new IPLRecordDAO(mostRunCSV)));
-            } else if (iplCSVClass.getName().equals("iplanalysis.MostWktsCSV")) {
+            } else if (iplCSVClass.getName().equals("com.bridgelabz.cricketleagueanalysis.IPLBowlingRecordsCsv")) {
                 StreamSupport.stream(mostRunCSVIterable.spliterator(), false)
-                        .map(IPLBatsmanRecordCsv.class::cast)
+                        .map(IPLBowlingRecordsCsv.class::cast)
                         .forEach(mostWktsCSV -> iplRecordDAOMap.put(mostWktsCSV.player, new IPLRecordDAO(mostWktsCSV)));
             }
             return iplRecordDAOMap;
