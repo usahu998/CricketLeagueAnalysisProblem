@@ -8,7 +8,7 @@ class SortByField {
     static Map<Parameter, Comparator> sortParameterComparator = new HashMap<>();
 
     public enum Parameter {
-        AVG, STRIKE_RATE, CENTURY, FOURS, HALF_CENTURY, HIGH_SCORE, SIX, RUN, SIX_AND_FOURS, SIX_AND_FOURS_WITH_STRIKERATE, AVERAGE_AND_STRIKERATE, RUNS_AND_AVERAGE;
+        AVG, STRIKE_RATE, CENTURY, FOURS, HALF_CENTURY, HIGH_SCORE, SIX, RUN, SIX_AND_FOURS, SIX_AND_FOURS_WITH_STRIKERATE, AVERAGE_AND_STRIKERATE, RUNS_AND_AVERAGE, ECONOMY;
     }
 
     SortByField() {
@@ -22,6 +22,7 @@ class SortByField {
         Comparator<IPLRecordDAO> foursComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.fours);
         Comparator<IPLRecordDAO> sixComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.six);
         Comparator<IPLRecordDAO> runComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.runs);
+        Comparator<IPLRecordDAO> economyComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.economy);
 
         sortParameterComparator.put(Parameter.AVG, avgComparator);
         sortParameterComparator.put(Parameter.STRIKE_RATE, strikeRateComparator);
@@ -32,6 +33,7 @@ class SortByField {
         sortParameterComparator.put(Parameter.SIX_AND_FOURS_WITH_STRIKERATE, strikeRateComparator.thenComparing(new Maximum4sAnd6sComparator()));
         sortParameterComparator.put(Parameter.AVERAGE_AND_STRIKERATE, avgComparator.thenComparing(strikeRateComparator));
         sortParameterComparator.put(Parameter.RUNS_AND_AVERAGE, runComparator.thenComparing(avgComparator));
+        sortParameterComparator.put(Parameter.ECONOMY, economyComparator);
 
         Comparator<IPLRecordDAO> comparator = sortParameterComparator.get(field);
         return comparator;

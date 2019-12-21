@@ -164,4 +164,16 @@ public class IPLCsvAnalyserTest {
         }
     }
 
+    @Test
+    public void givenIPLRecordCSVFile_WhenSortedOnBestEconomyRate_ShouldReturnCorrectDesiredSortedHigestRecord() {
+        try {
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BOWLING);
+            iplAnalyser.loadIPLRecords(IPL_BOWLING_CSV_FILE_PATH);
+            String iplPlayersRecords = iplAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.ECONOMY);
+            IPLBowlingRecordsCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLBowlingRecordsCsv[].class);
+            Assert.assertEquals("Ben Cutting", mostRunCSVS[mostRunCSVS.length - 1].player);
+        } catch (IPLRecordException ignored) {
+        }
+    }
+
 }
