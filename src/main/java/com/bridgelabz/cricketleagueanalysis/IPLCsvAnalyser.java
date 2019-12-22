@@ -1,6 +1,5 @@
 package com.bridgelabz.cricketleagueanalysis;
 
-
 import com.google.gson.Gson;
 
 import java.util.*;
