@@ -34,7 +34,7 @@ class SortByField {
         sortParameterComparator.put(Parameter.AVERAGE_AND_STRIKERATE, avgComparator.thenComparing(strikeRateComparator));
         sortParameterComparator.put(Parameter.RUNS_AND_AVERAGE, runComparator.thenComparing(avgComparator));
         sortParameterComparator.put(Parameter.ECONOMY, economyComparator);
-        sortParameterComparator.put(Parameter. FIVEWICKET_FOURWICKET_STRIKERATE, strikeRateComparator.thenComparing(new Sort5wAnd4wComparator()));
+        sortParameterComparator.put(Parameter.FIVEWICKET_FOURWICKET_STRIKERATE, strikeRateComparator.thenComparing(new Sort5wAnd4wComparator()));
         sortParameterComparator.put(Parameter.BOWLING_AVG_STRIKERATE, avgComparator.thenComparing(strikeRateComparator));
         sortParameterComparator.put(Parameter.MAX_WICKET_BEST_BOWLING, wicketComparator.thenComparing(avgComparator));
         sortParameterComparator.put(Parameter.WICKETS, wicketComparator);
