@@ -132,7 +132,6 @@ public class IPLCsvAnalyserTest {
         try {
             IPLCsvAnalyser iplCsvAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BOWLING);
             int numberOfRecords = iplCsvAnalyser.loadIPLRecords(IPL_BOWLING_CSV_FILE_PATH);
-           // System.out.println(numberOfRecords);
             Assert.assertEquals(99, numberOfRecords);
         } catch (IPLRecordException e) {
             e.printStackTrace();
@@ -228,6 +227,24 @@ public class IPLCsvAnalyserTest {
             IPLBowlingRecordsCsv[] mostBowlingCSVS = new Gson().fromJson(iplPlayersBowlingRecords, IPLBowlingRecordsCsv[].class);
             Assert.assertEquals("Krishnappa Gowtham", mostBowlingCSVS[mostBowlingCSVS.length-1].player);
             Assert.assertEquals("MS Dhoni", mostRunCSVS1[mostRunCSVS1.length-1].player);
+        } catch (IPLRecordException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void givenIPLRecordCSVFile_WhenBestAllRounderMostRunsAndWicket_ShouldReturnCorrectDesiredSortedHigestData() {
+        try {
+            IPLCsvAnalyser iplBattingAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
+            IPLCsvAnalyser iplBowlingAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BOWLING);
+            iplBowlingAnalyser.loadIPLRecords(IPL_BOWLING_CSV_FILE_PATH);
+            iplBattingAnalyser.loadIPLRecords(IPL_BATTING_CSV_FILE_PATH);
+            String iplPlayersBattingRecords = iplBattingAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.RUN);
+            String iplPlayersBowlingRecords = iplBowlingAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.WICKETS);
+            IPLBatsmanRecordCsv[] mostRunCSVS1 = new Gson().fromJson(iplPlayersBattingRecords, IPLBatsmanRecordCsv[].class);
+            IPLBowlingRecordsCsv[] mostBowlingCSVS = new Gson().fromJson(iplPlayersBowlingRecords, IPLBowlingRecordsCsv[].class);
+            Assert.assertEquals("Keemo Paul", mostBowlingCSVS[mostBowlingCSVS.length-1].player);
+            Assert.assertEquals("David Warner", mostRunCSVS1[mostRunCSVS1.length-1].player);
         } catch (IPLRecordException e) {
             e.printStackTrace();
         }

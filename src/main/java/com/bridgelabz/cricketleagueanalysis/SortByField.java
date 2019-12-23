@@ -8,7 +8,7 @@ class SortByField {
     static Map<Parameter, Comparator> sortParameterComparator = new HashMap<>();
 
     public enum Parameter {
-        AVG, STRIKE_RATE, CENTURY, FOURS, HALF_CENTURY, HIGH_SCORE, SIX, RUN, SIX_AND_FOURS, SIX_AND_FOURS_WITH_STRIKERATE, AVERAGE_AND_STRIKERATE, RUNS_AND_AVERAGE, ECONOMY, FIVEWICKET_FOURWICKET_STRIKERATE, BOWLING_AVG_STRIKERATE, MAX_WICKET_BEST_BOWLING;
+        AVG, STRIKE_RATE, FOURS, SIX, RUN, SIX_AND_FOURS, SIX_AND_FOURS_WITH_STRIKERATE, AVERAGE_AND_STRIKERATE, RUNS_AND_AVERAGE, ECONOMY, FIVEWICKET_FOURWICKET_STRIKERATE, BOWLING_AVG_STRIKERATE, MAX_WICKET_BEST_BOWLING, WICKETS;
     }
 
     SortByField() {
@@ -37,6 +37,7 @@ class SortByField {
         sortParameterComparator.put(Parameter. FIVEWICKET_FOURWICKET_STRIKERATE, strikeRateComparator.thenComparing(new Sort5wAnd4wComparator()));
         sortParameterComparator.put(Parameter.BOWLING_AVG_STRIKERATE, avgComparator.thenComparing(strikeRateComparator));
         sortParameterComparator.put(Parameter.MAX_WICKET_BEST_BOWLING, wicketComparator.thenComparing(avgComparator));
+        sortParameterComparator.put(Parameter.WICKETS, wicketComparator);
 
         Comparator<IPLRecordDAO> comparator = sortParameterComparator.get(field);
         return comparator;
