@@ -9,7 +9,7 @@ public class IPLCsvAnalyser {
 
     public enum IPLEntity {BATING, BOWLING}
 
-    Map<String, IPLRecordDAO> iplRecordCsvMap = new HashMap<>();
+    Map<String, IPLRecordDAO> iplRecordCsvMap;
     private SortByField.Parameter parameter;
     public IPLEntity iplEntity;
 
@@ -18,11 +18,12 @@ public class IPLCsvAnalyser {
     }
 
     public IPLCsvAnalyser() {
+        this.iplRecordCsvMap = new HashMap<String, IPLRecordDAO>();
     }
 
-    public <T> int loadIPLRecords(String csvFilePath) throws IPLRecordException {
+    public Map<String, IPLRecordDAO> loadIPLRecords(String csvFilePath, String iplBowlingCsvFilePath) throws IPLRecordException {
         iplRecordCsvMap = new IPLAdapterFactory().cricketLeagueFactory(iplEntity, csvFilePath);
-        return iplRecordCsvMap.size();
+        return iplRecordCsvMap;
     }
 
     public String getSortedIPLRecordsFieldWise(SortByField.Parameter parameter) throws IPLRecordException {

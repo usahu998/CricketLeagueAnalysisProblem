@@ -1,52 +1,62 @@
 package com.bridgelabz.cricketleagueanalysis;
 
 public class IPLRecordDAO {
+
+
     public IPLRecordDAO() {
     }
 
     public String player;
-    public int runs;
+    public int batsmanRun;
+    public int bowlerRun;
     public double strikeRate;
-    public double average;
+    public double battingAverage;
+    public double bowlingAverage;
     public int fours;
     public int six;
-    public String wickets;
+    public double wickets;
     public int foursWickets;
     public int fivesWickets;
     public double economy;
-
+    public int match;
+    public double over;
 
     public IPLRecordDAO(IPLBatsmanRecordCsv iplBatsmanRecordCsv) {
         player = iplBatsmanRecordCsv.player;
-        runs = iplBatsmanRecordCsv.runs;
+        batsmanRun = iplBatsmanRecordCsv.runs;
         strikeRate = iplBatsmanRecordCsv.strikeRate;
-        average = iplBatsmanRecordCsv.average;
+        battingAverage = iplBatsmanRecordCsv.average;
         fours = iplBatsmanRecordCsv.fours;
         six = iplBatsmanRecordCsv.sixes;
     }
 
     public IPLRecordDAO(IPLBowlingRecordsCsv iplBowlingRecordsCsv) {
         player = iplBowlingRecordsCsv.player;
-        runs = iplBowlingRecordsCsv.runs;
+        bowlerRun = iplBowlingRecordsCsv.runs;
         strikeRate = iplBowlingRecordsCsv.strikeRate;
-        average = iplBowlingRecordsCsv.average;
+        bowlingAverage = iplBowlingRecordsCsv.average;
         wickets = iplBowlingRecordsCsv.wickets;
         foursWickets = iplBowlingRecordsCsv.foursWickets;
         fivesWickets = iplBowlingRecordsCsv.fivesWickets;
         economy = iplBowlingRecordsCsv.economy;
-
+        match = iplBowlingRecordsCsv.matches;
+        over = iplBowlingRecordsCsv.Over;
     }
 
-    public IPLRecordDAO(String player, int runs, double strikeRate, double average, int fours, int six, String wickets, int foursWickets, int fivesWickets, double economy) {
+    public IPLRecordDAO(String player, int batsmanRun, int bowlerRun, double strikeRate, double battingAverage, double bowlingAverage, int fours, int six, double wickets, int foursWickets, int fivesWickets, double economy, int match, double over) {
         this.player = player;
-        this.runs = runs;
+        this.batsmanRun = batsmanRun;
+        this.bowlerRun = bowlerRun;
         this.strikeRate = strikeRate;
-        this.average = average;
+        this.battingAverage = battingAverage;
+        this.bowlingAverage = bowlingAverage;
         this.fours = fours;
         this.six = six;
         this.wickets = wickets;
         this.foursWickets = foursWickets;
         this.fivesWickets = fivesWickets;
         this.economy = economy;
+        this.match = match;
+        this.over = over;
     }
 }

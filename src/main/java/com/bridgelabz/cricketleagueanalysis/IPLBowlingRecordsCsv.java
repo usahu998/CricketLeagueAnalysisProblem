@@ -15,7 +15,7 @@ public class IPLBowlingRecordsCsv {
     @CsvBindByName(column = " Runs ")
     public int runs;
     @CsvBindByName(column = " Wkts ")
-    public String wickets;
+    public double wickets;
     @CsvBindByName(column = " BBI ")
     public double bestBowlingInning;
     @CsvBindByName(column = " Avg ", required = true)
