@@ -188,4 +188,17 @@ public class IPLCsvAnalyserTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenIPLRecordCSVFile_WhenGreatBowlingAvgWithBestStrikeRates_ShouldReturnCorrectDesiredSortedHigestData() {
+        try {
+            IPLCsvAnalyser iplAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BOWLING);
+            iplAnalyser.loadIPLRecords(IPL_BOWLING_CSV_FILE_PATH);
+            String iplpLayersRecords = iplAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.BOWLING_AVG_STRIKERATE);
+            IPLBowlingRecordsCsv[] mostRunCSVS = new Gson().fromJson(iplpLayersRecords, IPLBowlingRecordsCsv[].class);
+            Assert.assertEquals("Krishnappa Gowtham", mostRunCSVS[mostRunCSVS.length-1].player);
+        } catch (IPLRecordException e) {
+            e.printStackTrace();
+        }
+    }
 }
