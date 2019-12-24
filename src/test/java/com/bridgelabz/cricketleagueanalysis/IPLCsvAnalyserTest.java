@@ -236,7 +236,7 @@ public class IPLCsvAnalyserTest {
             iplAnalyser.loadIPLRecords(IPL_BATTING_CSV_FILE_PATH, IPL_BOWLING_CSV_FILE_PATH);
             String iplpLayersRecords = iplAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.IPL_BEST_ALLROUNDER);
             IPLBatsmanRecordCsv[] mostRunCSVS = new Gson().fromJson(iplpLayersRecords, IPLBatsmanRecordCsv[].class);
-            Assert.assertEquals("Hardik Pandya", mostRunCSVS[mostRunCSVS.length - 1].player);
+            Assert.assertEquals("Shreyas Iyer", mostRunCSVS[mostRunCSVS.length - 1].player);
         } catch (IPLRecordException e) {
             e.printStackTrace();
         }

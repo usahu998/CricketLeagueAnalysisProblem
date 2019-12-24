@@ -15,7 +15,7 @@ import java.util.stream.StreamSupport;
 
 public abstract class IPLAdapter {
 
-    public abstract Map<String, IPLRecordDAO> loadIPLData(IPLCsvAnalyser.IPLEntity iplEntity, String... csvFilePath) throws IPLRecordException;
+    public abstract Map<String, IPLRecordDAO> loadIPLData(String... csvFilePath) throws IPLRecordException;
 
     public <T> Map<String, IPLRecordDAO> loadIPLData(Class<T> iplCSVClass, String... csvFilePath) throws IPLRecordException {
         Map<String, IPLRecordDAO> iplRecordDAOMap = new HashMap<>();

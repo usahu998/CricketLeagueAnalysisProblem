@@ -19,3 +19,6 @@ dependencies {
     compile "org.apache.commons:commons-csv:1.5"
     compile (files("C:\\Users\\user\\IdeaProjects\\CricketIpl\\CricketLeagueAnalysisProblem\\src\\main\\resources\\CSVBuilder.jar"))
 }
+dependencies {
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.1.0'
+}

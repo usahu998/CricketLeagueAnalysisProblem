@@ -6,6 +6,11 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class IPLCsvAnalyser {
+    public IPLAdapter iplAdapter;
+
+    public void setIplAdapter(IPLAdapter iplAdapter) {
+        this.iplAdapter = iplAdapter;
+    }
 
     public enum IPLEntity {BATING, BOWLING}
 
@@ -17,13 +22,13 @@ public class IPLCsvAnalyser {
         this.iplEntity = iplEntity;
     }
 
-    public IPLCsvAnalyser() {
-        this.iplRecordCsvMap = new HashMap<String, IPLRecordDAO>();
-    }
+//    public IPLCsvAnalyser() {
+//        this.iplRecordCsvMap = new HashMap<String, IPLRecordDAO>();
+//    }
 
-    public Map<String, IPLRecordDAO> loadIPLRecords(String csvFilePath, String iplBowlingCsvFilePath) throws IPLRecordException {
-        iplRecordCsvMap = new IPLAdapterFactory().cricketLeagueFactory(iplEntity, csvFilePath);
-        return iplRecordCsvMap;
+    public Map<String, IPLRecordDAO> loadIPLRecords(String... csvFilePath) throws IPLRecordException {
+        Map<String, IPLRecordDAO> recordDAOMap = this.iplAdapter.loadIPLData(csvFilePath);
+        return recordDAOMap;
     }
 
     public String getSortedIPLRecordsFieldWise(SortByField.Parameter parameter) throws IPLRecordException {

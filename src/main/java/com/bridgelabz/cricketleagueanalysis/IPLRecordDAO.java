@@ -3,8 +3,8 @@ package com.bridgelabz.cricketleagueanalysis;
 public class IPLRecordDAO {
 
 
-    public IPLRecordDAO() {
-    }
+//    public IPLRecordDAO() {
+//    }
 
     public String player;
     public int batsmanRun;
@@ -28,6 +28,20 @@ public class IPLRecordDAO {
         battingAverage = iplBatsmanRecordCsv.average;
         fours = iplBatsmanRecordCsv.fours;
         six = iplBatsmanRecordCsv.sixes;
+    }
+
+    public IPLRecordDAO(String player, int batsmanRun, double battingAverage, int fours) {
+        this.player = player;
+        this.batsmanRun = batsmanRun;
+        this.battingAverage = battingAverage;
+        this.fours = fours;
+    }
+
+    public IPLRecordDAO(String player, int bowlerRun, double bowlingAverage, double wickets) {
+        this.player = player;
+        this.bowlerRun = bowlerRun;
+        this.bowlingAverage = bowlingAverage;
+        this.wickets = wickets;
     }
 
     public IPLRecordDAO(IPLBowlingRecordsCsv iplBowlingRecordsCsv) {
@@ -59,4 +73,7 @@ public class IPLRecordDAO {
         this.match = match;
         this.over = over;
     }
+
+
+
 }
