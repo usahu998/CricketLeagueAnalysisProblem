@@ -5,17 +5,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 class SortByField {
-    static Map<Parameter, Comparator> sortParameterComparator = new HashMap<>();
+    static Map<Parameter, Comparator> sortParameterComparator;
 
     public enum Parameter {
-        AVG, STRIKE_RATE, FOURS, SIX, BATSMAN_RUN, SIX_AND_FOURS, SIX_AND_FOURS_WITH_STRIKERATE, RUNS_AND_AVERAGE, ECONOMY, FIVEWICKET_FOURWICKET_STRIKERATE, BOWLING_AVG_STRIKERATE, MAX_WICKET_BEST_BOWLING, WICKETS, BATTING_AVG, BOWLING_AVG, BOWLING_RUN, BATTING_AVERAGE_AND_STRIKERATE, BOWLING_AVERAGE_AND_STRIKERATE, BATTING_BOWLING_AVERAGE, IPL_BEST_ALLROUNDER;
+        STRIKE_RATE, FOURS, SIX, BATSMAN_RUN, SIX_AND_FOURS, SIX_AND_FOURS_WITH_STRIKERATE, RUNS_AND_AVERAGE, ECONOMY, FIVEWICKET_FOURWICKET_STRIKERATE, BOWLING_AVG_STRIKERATE, MAX_WICKET_BEST_BOWLING, WICKETS, BATTING_AVG, BOWLING_AVG, BOWLING_RUN, BATTING_AVERAGE_AND_STRIKERATE, BOWLING_AVERAGE_AND_STRIKERATE, BATTING_BOWLING_AVERAGE, IPL_BEST_ALLROUNDER
     }
-
-//    SortByField() {
-//    }
 
     public static Comparator getComparatorForIPL(Parameter field) {
 
+        sortParameterComparator = new HashMap<>();
         Comparator<IPLRecordDAO> batAvgComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.battingAverage);
         Comparator<IPLRecordDAO> bowlAvgComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.bowlingAverage);
         Comparator<IPLRecordDAO> strikeRateComparator = Comparator.comparing(iplBatsmanRecordCsv -> iplBatsmanRecordCsv.strikeRate);
@@ -47,8 +45,6 @@ class SortByField {
         sortParameterComparator.put(Parameter.BATTING_BOWLING_AVERAGE, new SortBattingBowlingAvg());
         sortParameterComparator.put(Parameter.IPL_BEST_ALLROUNDER, new SortIPLALLRounders());
 
-
-        Comparator<IPLRecordDAO> comparator = sortParameterComparator.get(field);
-        return comparator;
+        return sortParameterComparator.get(field);
     }
 }

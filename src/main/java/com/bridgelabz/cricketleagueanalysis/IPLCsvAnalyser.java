@@ -23,7 +23,7 @@ public class IPLCsvAnalyser {
     }
 
     public IPLCsvAnalyser() {
-        this.iplRecordCsvMap = new HashMap<String, IPLRecordDAO>();
+        this.iplRecordCsvMap = new HashMap<>();
     }
 
     public Map<String, IPLRecordDAO> loadIPLRecords(String... csvFilePath) throws IPLRecordException {
@@ -42,8 +42,7 @@ public class IPLCsvAnalyser {
                 .sorted(iplRecordCsvComparator)
                 .collect(Collectors.toList());
         System.out.println(iplRecordList.size());
-        String iplRecordLists = new Gson().toJson(iplRecordList);
-        return iplRecordLists;
+        return new Gson().toJson(iplRecordList);
     }
 }
 

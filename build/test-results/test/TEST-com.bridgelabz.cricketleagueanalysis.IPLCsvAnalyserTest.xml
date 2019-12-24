@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-24T11:27:29" hostname="DESKTOP-DSNLESO" time="1.11">
+<testsuite name="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" tests="19" skipped="0" failures="0" errors="0" timestamp="2019-12-24T11:49:14" hostname="DESKTOP-DSNLESO" time="9.955">
   <properties/>
-  <testcase name="givenIPLRecordCSVFile_WhenBestAllRounderMostRunsAndWicket_ShouldReturnCorrectDesiredSortedHigestData" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="1.11"/>
+  <testcase name="givenIPLMOstWktsCSVFile_WhenSortedOnBattingAndBowlingAvg_ShouldReturnCorrectDesiredSortedData" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="2.26"/>
+  <testcase name="givenIPLRecordCSVFile_WithIncorrectDelimiter_ShouldReturnCustomExceptionType" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.078"/>
+  <testcase name="givenIPLRecordCSVFile_WhenGreatBowlingAvgWithBestStrikeRates_ShouldReturnCorrectDesiredSortedHigestData" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.636"/>
+  <testcase name="givenIPLRecordCSVFile_WhenSortedOnBattingAvg_ShouldReturnCorrectDesiredSortedHigestRecord" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.83"/>
+  <testcase name="givenIPLRecordCSVFile_WithIncorrectFilePath_ShouldReturnCustomExceptionType" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.086"/>
+  <testcase name="givenIPLRecordCSVFile_WhenSortedOn5WAnd4WWithStrikeRate_ShouldReturnCorrectDesiredSortedHigestData" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.583"/>
+  <testcase name="givenIPLRecordCSVFile_WhenSortedMaxRunAndAverage_ShouldReturnCorrectDesiredSortedHigestData" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.898"/>
+  <testcase name="givenIPLBattingCSVFile_ReturnsCorrectRecords" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.673"/>
+  <testcase name="givenIPLRecordCSVFile_WhenBestAllRounderMostRunsAndWicket_ShouldReturnCorrectDesiredSortedHigestData" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.396"/>
+  <testcase name="givenIPLRecordCSVFile_WhenSortedGreatAverageWithGreateStrikeRate_ShouldReturnCorrectDesiredSortedHigestData" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.419"/>
+  <testcase name="givenIPLRecordCSVFile_WithMissingHeaderFile_ShouldReturnCustomExceptionType" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.057"/>
+  <testcase name="givenIPLRecordCSVFile_WhenSortedOnBestEconomyRate_ShouldReturnCorrectDesiredSortedHigestRecord" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.459"/>
+  <testcase name="givenIPLRecordCSVFile_WhenSortedOn4SAnd6s_ShouldReturnCorrectDesiredSortedRecord" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.561"/>
+  <testcase name="givenIPLRecordCSVFile_WhenMaxWicketWithBestBowling_ShouldReturnCorrectDesiredSortedHigestData" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.365"/>
+  <testcase name="givenIPLRecordCSVFile_WhenSortedOnBowlingStrikeRate_ShouldReturnCorrectDesiredSortedHigestRecord" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.358"/>
+  <testcase name="givenIPLRecordCSVFile_WhenSortedOnStrikeRate_ShouldReturnCorrectDesiredSortedHigestRecord" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.319"/>
+  <testcase name="givenIPLBOWLING_CSVFileReturnsCorrectRecords" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.359"/>
+  <testcase name="givenIPLRecordCSVFile_WhenSortedOnBowlingAvg_ShouldReturnCorrectDesiredSortedHigestRecord" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.313"/>
+  <testcase name="givenIPLRecordCSVFile_WhenSortedOn4sAnd6sWithStrikeRate_ShouldReturnCorrectDesiredSortedHigestData" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="0.281"/>
   <system-out><![CDATA[100
+86
+100
+86
+100
+100
+100
+86
+100
+86
+86
+100
+86
+100
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
