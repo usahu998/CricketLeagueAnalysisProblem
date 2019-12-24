@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-24T11:27:29" hostname="DESKTOP-DSNLESO" time="1.11">
+  <properties/>
+  <testcase name="givenIPLRecordCSVFile_WhenBestAllRounderMostRunsAndWicket_ShouldReturnCorrectDesiredSortedHigestData" classname="com.bridgelabz.cricketleagueanalysis.IPLCsvAnalyserTest" time="1.11"/>
+  <system-out><![CDATA[100
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

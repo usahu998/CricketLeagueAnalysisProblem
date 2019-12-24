@@ -22,13 +22,13 @@ public class IPLCsvAnalyser {
         this.iplEntity = iplEntity;
     }
 
-//    public IPLCsvAnalyser() {
-//        this.iplRecordCsvMap = new HashMap<String, IPLRecordDAO>();
-//    }
+    public IPLCsvAnalyser() {
+        this.iplRecordCsvMap = new HashMap<String, IPLRecordDAO>();
+    }
 
     public Map<String, IPLRecordDAO> loadIPLRecords(String... csvFilePath) throws IPLRecordException {
-        Map<String, IPLRecordDAO> recordDAOMap = this.iplAdapter.loadIPLData(csvFilePath);
-        return recordDAOMap;
+        iplRecordCsvMap = this.iplAdapter.loadIPLData(csvFilePath);
+        return iplRecordCsvMap;
     }
 
     public String getSortedIPLRecordsFieldWise(SortByField.Parameter parameter) throws IPLRecordException {
