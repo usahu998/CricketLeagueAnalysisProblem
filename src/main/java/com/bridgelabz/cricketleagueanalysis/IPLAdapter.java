@@ -34,7 +34,6 @@ public abstract class IPLAdapter {
                         .forEach(mostWktsCSV -> iplRecordDAOMap.put(mostWktsCSV.player, new IPLRecordDAO(mostWktsCSV)));
             }
             return iplRecordDAOMap;
-
         } catch (IOException e) {
             throw new IPLRecordException(e.getMessage(), IPLRecordException.ExceptionType.NO_CENSUS_DATA);
         } catch (RuntimeException e) {

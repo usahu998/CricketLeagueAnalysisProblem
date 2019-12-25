@@ -32,16 +32,14 @@ public class IPLCsvAnalyser {
     }
 
     public String getSortedIPLRecordsFieldWise(SortByField.Parameter parameter) throws IPLRecordException {
-        Comparator<IPLRecordDAO> iplRecordCsvComparator = null;
+        Comparator<IPLRecordDAO> iplRecordCsvComparator;
         if (iplRecordCsvMap == null || iplRecordCsvMap.size() == 0) {
             throw new IPLRecordException("NO_CENSUS_DATA", IPLRecordException.ExceptionType.NO_CENSUS_DATA);
         }
         iplRecordCsvComparator = SortByField.getComparatorForIPL(parameter);
-
         List iplRecordList = iplRecordCsvMap.values().stream()
                 .sorted(iplRecordCsvComparator)
                 .collect(Collectors.toList());
-        System.out.println(iplRecordList.size());
         return new Gson().toJson(iplRecordList);
     }
 }

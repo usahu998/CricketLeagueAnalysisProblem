@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class IPLCsvAnalyserTest {
     private static final String IPL_BATTING_CSV_FILE_PATH = "./src/test/resources/IPL2019FactsheetMostRuns.csv";
-    private static final String IPL_TEST_CSV_FILE_PATH = "./src/test/resources/TestIPL2019FactsheetMostRuns.csv";
+    private static final String IPL_WRONG_CSV_FILE_PATH = "C:\\Users\\user\\IdeaProjects\\NewCricket\\CricketLeagueAnalysisProblem\\build.gradle";
     private static final String WRONG_CSV_FILE_PATH = "./src/test/resources/TestIPL2019FactsheetMostRuns.csv";
     private static final String WRONG_DELIMITER_CSV_FILE_PATH = "./src/test/resources/IncorrectDelimiterIPL2019FactsheetMostRuns.csv";
     private static final String MISSING_HEADER_CSV_FILE_PATH = "./src/test/resources/HeaderMissingIPL2019FactsheetMostRuns.csv";
@@ -46,7 +46,7 @@ public class IPLCsvAnalyserTest {
             IPLAdapter iplAdapterObject = IPLAdapterFactory.createIPLAdapterObject(IPLCsvAnalyser.IPLEntity.BATING);
             IPLCsvAnalyser iplCsvAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
             iplCsvAnalyser.setIplAdapter(iplAdapterObject);
-            iplCsvAnalyser.loadIPLRecords(WRONG_DELIMITER_CSV_FILE_PATH, IPL_BOWLING_CSV_FILE_PATH);
+            iplCsvAnalyser.loadIPLRecords(WRONG_DELIMITER_CSV_FILE_PATH);
         } catch (IPLRecordException e) {
             Assert.assertEquals(IPLRecordException.ExceptionType.NO_SUCH_FILE, e.type);
         }
@@ -260,7 +260,7 @@ public class IPLCsvAnalyserTest {
             String iplPlayersRecords = iplCsvAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.BATTING_BOWLING_AVERAGE);
             IPLBatsmanRecordCsv[] mostRunCSVS = new Gson().fromJson(iplPlayersRecords, IPLBatsmanRecordCsv[].class);
             Assert.assertEquals("Shreyas Iyer", mostRunCSVS[mostRunCSVS.length - 1].player);
-        } catch ( IPLRecordException e) {
+        } catch (IPLRecordException e) {
             e.printStackTrace();
         }
     }
@@ -280,4 +280,39 @@ public class IPLCsvAnalyserTest {
         }
     }
 
+    @Test
+    public void givenIPLRecordCSVFile_WithNoSuchFile_ShouldReturnCustomExceptionType() {
+        try {
+            IPLAdapter iplAdapterObject = IPLAdapterFactory.createIPLAdapterObject(IPLCsvAnalyser.IPLEntity.BATING);
+            IPLCsvAnalyser iplCsvAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
+            iplCsvAnalyser.setIplAdapter(iplAdapterObject);
+            iplCsvAnalyser.getSortedIPLRecordsFieldWise(SortByField.Parameter.STRIKE_RATE);
+        } catch (IPLRecordException e) {
+            Assert.assertEquals(IPLRecordException.ExceptionType.NO_CENSUS_DATA, e.type);
+        }
+    }
+
+    @Test
+    public void givenIPLRecordCSVFile_WithCsvFileInternalIssue_ShouldReturnCustomExceptionType() {
+        try {
+            IPLAdapter iplAdapterObject = IPLAdapterFactory.createIPLAdapterObject(IPLCsvAnalyser.IPLEntity.BATING);
+            IPLCsvAnalyser iplCsvAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
+            iplCsvAnalyser.setIplAdapter(iplAdapterObject);
+            iplCsvAnalyser.iplAdapter.loadIPLData(IPLBatsmanRecordCsv.class, null);
+        } catch (IPLRecordException e) {
+            Assert.assertEquals(IPLRecordException.ExceptionType.CSV_FILE_INTERNAL_ISSUES, e.type);
+        }
+    }
+
+    @Test
+    public void givenIPLRecordCSVFile_WithCsvFileNoRecord_ShouldReturnCustomExceptionType() {
+        try {
+            IPLAdapter iplAdapterObject = IPLAdapterFactory.createIPLAdapterObject(IPLCsvAnalyser.IPLEntity.BATING);
+            IPLCsvAnalyser iplCsvAnalyser = new IPLCsvAnalyser(IPLCsvAnalyser.IPLEntity.BATING);
+            iplCsvAnalyser.setIplAdapter(iplAdapterObject);
+            iplCsvAnalyser.iplAdapter.loadIPLData(IPLBatsmanRecordCsv.class, NON_EXISTING_IPL_CSV_FILE_PATH);
+        } catch (IPLRecordException e) {
+            Assert.assertEquals(IPLRecordException.ExceptionType.NO_CENSUS_DATA, e.type);
+        }
+    }
 }
